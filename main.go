@@ -3,11 +3,11 @@ package main
 import (
 	"embed"
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 //go:embed client/views/*
@@ -41,14 +41,14 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Print(r.FormValue("pokemon"))
-		resp, err := http.Get("https://pokeapi.co/api/v2/pokemon/" + r.FormValue("pokemon"))
+		resp, err := http.Get("https://pokeapi.co/api/v2/pokemon/" + strings.ToLower(r.FormValue("pokemon")))
 		if err != nil {
 			panic(err)
 		}
 		data := Pokemon{}
 		if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
 			log.Fatalf("Failed to decode JSON: %v", err)
+
 		}
 		if err := t.ExecuteTemplate(w, "response.html", data); err != nil {
 			log.Fatal(err)
