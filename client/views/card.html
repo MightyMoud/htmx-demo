@@ -1,0 +1,21 @@
+{{define "POKECARD"}}
+<div class="card w-48 bg-base-100 shadow-xl border-2 border-gray-500">
+  <div class="card-body p-4">
+    <img
+      class="self-center"
+      alt="{{.Name}}"
+      width="80"
+      src="{{.Sprites.Other.Showdown.FrontDefault}}"
+    />
+    <h2 class="card-title self-center">{{.Name}}</h2>
+    <div class="divider mx-[-18px] my-0 border-color-gray-400"></div>
+    <ul>
+      {{range .Types}}
+      <li><strong>Type:</strong> {{.TypeDetail.Name}}</li>
+      {{end}}
+      <li><strong>Height:</strong> {{.Height}}</li>
+      <li><strong>Weight:</strong> {{.Weight}}</li>
+    </ul>
+  </div>
+</div>
+{{end}}

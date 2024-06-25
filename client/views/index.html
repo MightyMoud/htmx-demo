@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.0"
+      integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex flex-col gap-20 align-center items-center">
+      <h1 class="text-2xl">Pokemon Cards</h1>
+      <div class="flex justify-center">
+        <div class="flex align-center gap-5">
+          {{block "POKECARD" . }} {{end}}
+
+          <div
+            id="targetDiv"
+            class="card w-48 bg-base-100 shadow-xl border-2 border-gray-500"
+          >
+            <form
+              hx-indicator="#indicator"
+              hx-post="/poke"
+              hx-trigger="submit"
+              hx-target="#targetDiv"
+              hx-swap="outerHTML"
+              class="card-body justify-center p-4"
+            >
+              <h2 class="card-title self-center">Add more</h2>
+              <input
+                type="text"
+                name="pokemon"
+                placeholder="Type here"
+                class="input input-sm input-bordered w-full max-w-xs"
+              />
+              <span
+                class="loading hx-indicator loading-dots loading-xs"
+                id="indicator"
+              ></span>
+
+              <button
+                hx-disabled-elt="this"
+                type="submit"
+                class="btn btn-sm btn-primary"
+              >
+                Add
+              </button>
+            </form>
+          </div>
+          <!-- sds -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

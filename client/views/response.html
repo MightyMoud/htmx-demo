@@ -1,0 +1,41 @@
+<div class="card w-48 bg-base-100 shadow-xl border-2 border-gray-500">
+  <div class="card-body p-4">
+    <img
+      class="self-center"
+      alt="{{.Name}}"
+      width="80"
+      src="{{.Sprites.Other.Showdown.FrontDefault}}"
+    />
+    <h2 class="card-title self-center">{{.Name}}</h2>
+    <div class="divider mx-[-18px] my-0 border-color-gray-400"></div>
+    <ul>
+      {{range .Types}}
+      <li><strong>Type:</strong> {{.TypeDetail.Name}}</li>
+      {{end}}
+      <li><strong>Height:</strong> {{.Height}}</li>
+      <li><strong>Weight:</strong> {{.Weight}}</li>
+    </ul>
+  </div>
+</div>
+
+<div
+  id="targetDiv"
+  class="card w-48 bg-base-100 shadow-xl border-2 border-gray-500"
+>
+  <form
+    hx-post="/poke"
+    hx-trigger="submit"
+    hx-target="#targetDiv"
+    hx-swap="outerHTML"
+    class="card-body justify-center p-4"
+  >
+    <h2 class="card-title self-center">Add more</h2>
+    <input
+      type="text"
+      name="pokemon"
+      placeholder="Type here"
+      class="input input-sm input-bordered w-full max-w-xs"
+    />
+    <button type="submit" class="btn btn-sm btn-primary">Add</button>
+  </form>
+</div>
