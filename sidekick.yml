@@ -1,0 +1,6 @@
+name: app
+version: V2
+image: ""
+url: app.174.138.29.184.sslip.io
+port: 3000
+createdAt: Fri Oct 18 19:12:01 KST 2024
